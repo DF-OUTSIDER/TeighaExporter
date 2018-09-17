@@ -1,0 +1,126 @@
+// Microsoft Visual C++ generated resource script.
+//
+
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+
+#include "winres.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#ifdef _DEBUG
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S " example: XmlGLES2View (Debug)"
+#else
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S " example: XmlGLES2View"
+#endif
+
+#define INTERNAL_NAME "XmlGLES2View\0"
+#define ORIGINAL_FILE_NAME    "XmlGLES2View.exe\0"
+#define PRODUCT_NAME_ADDITION TD_PRODUCT_NAME_ADDITION_S
+#define COPYRIGHT_START_YEAR  TD_COPYRIGHT_START_YEAR_S
+
+#include "VersionInfo.rc2"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENUAPP MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open File...",               IDC_MENU_OPENFILE
+        MENUITEM SEPARATOR
+        MENUITEM "Open &Multiple Files...",     IDC_MENU_OPENMULTFILES
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDC_MENU_QUIT
+    END
+    POPUP "&AppClient"
+    BEGIN
+        MENUITEM "Placeholder",                 IDC_MENU_APPCLIENT0
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPENFILES DIALOGEX 0, 0, 385, 284
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Files"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+DEFPUSHBUTTON   "OK", IDOK, 267, 263, 50, 14
+PUSHBUTTON      "Cancel", IDCANCEL, 321, 263, 50, 14
+GROUPBOX        "", IDC_STATIC, 7, 7, 371, 24
+LTEXT           "Directory:", IDC_STATIC, 14, 16, 33, 8
+LTEXT           "", IDC_SDIRECTORY, 51, 16, 320, 8
+GROUPBOX        "Files Selected", IDC_STATIC, 7, 36, 255, 241
+LISTBOX         IDC_LBFILES, 14, 51, 242, 219, LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+PUSHBUTTON      "&Add Files", IDC_BADD, 268, 40, 103, 14
+PUSHBUTTON      "&Delete Files", IDC_BDELETE, 268, 56, 103, 14
+PUSHBUTTON      "&Select All", IDC_BSELALL, 268, 78, 103, 14
+PUSHBUTTON      "&Unselect All", IDC_BUNSELALL, 268, 94, 103, 14
+PUSHBUTTON      "Move to &Top", IDC_BMOVETOP, 268, 116, 103, 14
+PUSHBUTTON      "Move U&pper", IDC_BMOVEUP, 267, 132, 103, 14
+PUSHBUTTON      "S&ort", IDC_BSORT, 267, 148, 103, 14
+PUSHBUTTON      "Move &Lower", IDC_BMOVELOWER, 268, 164, 103, 14
+PUSHBUTTON      "Move to &Bottom", IDC_BMOVEBOTTOM, 267, 180, 103, 14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+IDD_OPENFILES, DIALOG
+BEGIN
+LEFTMARGIN, 7
+RIGHTMARGIN, 378
+TOPMARGIN, 7
+BOTTOMMARGIN, 277
+END
+END
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICONAPP             ICON                    "../../Logo/Icon-ODA.ico"
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED

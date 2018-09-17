@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{5B7514EB-D98E-431F-B071-AA9BC7D50DA6}</ProjectGUID>
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>OdPdfExportEx</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">OdPdfExportEx</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\bin\Release</OutDir>
+    <IntDir>OdPdfExportEx.dir\Release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\Common\Teigha\ThirdParty;..\Common\Teigha\ThirdParty\activation;..\Common\Teigha\Kernel\Extensions\ExServices;..\Common\Teigha\Drawing\Extensions\ExServices;..\Common\Teigha\Kernel\Exports\PdfExport\Include;..\Common\Teigha\Drawing\Examples\OdPdfExportEx\..\Common;..\Common\Teigha\Drawing\Include;..\Common\Teigha\Kernel\Include;..\Common\Teigha\ThirdParty\FreeImage;..\Common\Teigha\ThirdParty\FreeImage\Source;..\Common\Teigha\ThirdParty\FreeImage\Wrapper\FreeImagePlus;..\Common\Teigha\ThirdParty\FreeImage\Source\LibJPEG;..\Common\Teigha\ThirdParty\ZLib;..\Common\Teigha\ThirdParty\stsflib;..\Common\Teigha\ThirdParty\qpdf\include;..\Common\Teigha\ThirdParty\openCOLLADA\Externals\pcre\include;..\Common\Teigha\ThirdParty\UTF\include;..\Common\Teigha\Dgn\Include;..\Common\Teigha\Dgn\Extensions\ExServices;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4996;4131;4244;4127</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;_CRT_SECURE_NO_DEPRECATE;WIN64;_WIN64;_WINDOWS;_CRT_NOFORCE_MANIFEST;_STL_NOFORCE_MANIFEST;NDEBUG;_CRTDBG_MAP_ALLOC;RASTER_FREE_IMAGE;FREEIMAGE_LIB;Z_PREFIX;_SISL_IMPL_;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AssemblerListingLocation>Release</AssemblerListingLocation>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;_CRT_SECURE_NO_DEPRECATE;WIN32;_WIN32;_WINDOWS;_CRT_NOFORCE_MANIFEST;_STL_NOFORCE_MANIFEST; NDEBUG;ODA_LICENSING_ENABLED;_CRTDBG_MAP_ALLOC;RASTER_FREE_IMAGE;FREEIMAGE_LIB;_SISL_IMPL_;_TOOLKIT_IN_DLL_;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\ThirdParty;..\..\..\..\..\ThirdParty\activation;..\..\..\..\..\Kernel\Extensions\ExServices;..\..\..\..\..\Drawing\Extensions\ExServices;..\..\..\..\..\Kernel\Exports\PdfExport\Include;..\..\..\..\..\Drawing\Examples\OdPdfExportEx\..\Common;..\..\..\..\..\Drawing\Include;..\..\..\..\..\Kernel\Include;..\..\..\..\..\ThirdParty\FreeImage;..\..\..\..\..\ThirdParty\FreeImage\Source;..\..\..\..\..\ThirdParty\FreeImage\Wrapper\FreeImagePlus;..\..\..\..\..\ThirdParty\FreeImage\Source\LibJPEG;..\..\..\..\..\ThirdParty\stsflib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\..\..\..\..\ThirdParty;..\..\..\..\..\ThirdParty\activation;..\..\..\..\..\Kernel\Extensions\ExServices;..\..\..\..\..\Drawing\Extensions\ExServices;..\..\..\..\..\Kernel\Exports\PdfExport\Include;..\..\..\..\..\Drawing\Examples\OdPdfExportEx\..\Common;..\..\..\..\..\Drawing\Include;..\..\..\..\..\Kernel\Include;..\..\..\..\..\ThirdParty\FreeImage;..\..\..\..\..\ThirdParty\FreeImage\Source;..\..\..\..\..\ThirdParty\FreeImage\Wrapper\FreeImagePlus;..\..\..\..\..\ThirdParty\FreeImage\Source\LibJPEG;..\..\..\..\..\ThirdParty\stsflib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;WinOpenGL.lib;TD_OpenGL.lib;Opengl32.lib;OdOleItemHandler.lib;AcIdViewObj.lib;TD_PdfExport.lib;TD_PDFToolkit.lib;RasterProcessor.lib;PlotStyleServices.lib;ModelerGeometry.lib;RecomputeDimBlock.lib;RxRasterServices.lib;OdBrepModeler.lib;TD_BrepBuilderFiller.lib;WinBitmap.lib;TD_RasterExport.lib;TD_2dExport.lib;TD_ExamplesCommon.lib;TD_DrawingsExamplesCommon.lib;TD_Ave.lib;TD_Db.lib;TD_DbRoot.lib;TD_Gs.lib;TD_Gi.lib;TD_SpatialIndex.lib;TD_BrepRenderer.lib;TD_BrepBuilder.lib;TD_Br.lib;TD_AcisBuilder.lib;TD_Ge.lib;TD_Root.lib;FreeImage.lib;TD_Zlib.lib;stsflib.lib;qpdf.lib;pcre.lib;ws2_32.lib;crypt32.lib;UTF.lib;rpcrt4.lib;PlotSettingsValidator.lib;TD_Alloc.lib;RText.lib;TD_DbEntities.lib;TD_DbIO.lib;TD_DbCore.lib;ATEXT.lib;ISM.lib;WipeOut.lib;AcMPolygonObj15.lib;ACCAMERA.lib;SCENEOE.lib;Secur32.lib;TG_Dgn7IO.lib;TG_ModelerGeometry.lib;PSToolkit.lib;TG_Db.lib;tinyxml.lib;oless.lib;FreeType.lib;TG_DwgDb.lib;TG_ExamplesCommon.lib;TD_DgnImport.lib;AcDgnLS.lib;sisl.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Common\Teigha\lib\vc14_amd64mt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>OdPdfExportEx.lib</ImportLibrary>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ExSystemServices.cpp" />
+    <ClCompile Include="OdAllocOp.cpp" />
+    <ClCompile Include="OdPdfExportEx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExHostAppServices.h" />
+    <ClInclude Include="ExSystemServices.h" />
+    <ClInclude Include="Json\allocator.h" />
+    <ClInclude Include="Json\assertions.h" />
+    <ClInclude Include="Json\autolink.h" />
+    <ClInclude Include="Json\config.h" />
+    <ClInclude Include="OdFileBuf.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

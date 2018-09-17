@@ -1,0 +1,6 @@
+Here could be added gles_sdk OpenGL ES 2.0 ATI emulator for Windows:
+http://developer.amd.com/tools-and-sdks/graphics-development/amd-opengl-es-sdk/
+
+CMake will automatically found availability of gles_sdk folder in win directory and add GLES2 device into Visual Studio solution with full emulation configuration instead of compatibility configuration.
+
+- - -

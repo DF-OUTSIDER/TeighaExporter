@@ -1,0 +1,3 @@
+if(NOT ODA_HAVENOT_EXECUTABLE)
+add_subdirectory(OdDwfLoad)
+endif(NOT ODA_HAVENOT_EXECUTABLE)

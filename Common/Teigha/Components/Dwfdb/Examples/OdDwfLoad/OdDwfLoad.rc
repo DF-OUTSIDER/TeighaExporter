@@ -1,0 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+
+#include "winres.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#endif //_WIN32
+
+#ifdef _DEBUG
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S " example: OdDwfLoad (Debug)"
+#else
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S " example: OdDwfLoad"
+#endif
+
+#define INTERNAL_NAME "OdDwfLoad\0"
+#define ORIGINAL_FILE_NAME    "OdDwfLoad.exe\0"
+#define PRODUCT_NAME_ADDITION TD_PRODUCT_NAME_ADDITION_S
+#define COPYRIGHT_START_YEAR  TD_COPYRIGHT_START_YEAR_S
+
+#include "../../DwfVersionInfo.rc2"
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////

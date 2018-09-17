@@ -1,0 +1,20 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+#ifdef _DEBUG
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S ": DbJoinEntityPE Module(Debug)\0"
+#else
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S ": DbJoinEntityPE Module\0"
+#endif
+
+
+#define INTERNAL_NAME "DbJoinEntityPE\0"
+#define ORIGINAL_FILE_NAME    "DbJoinEntityPE.tx\0"
+#define PRODUCT_NAME_ADDITION TD_PRODUCT_NAME_ADDITION_S
+#define COPYRIGHT_START_YEAR  TD_COPYRIGHT_START_YEAR_S
+
+#include "../../../VersionInfo.rc2"

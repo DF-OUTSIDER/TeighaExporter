@@ -1,0 +1,25 @@
+//
+// FILEDLGEXT.RC2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////
+#ifdef _DEBUG
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S " extension: File Open Dialog (Debug)\0"
+#else
+#define FILE_DESCRIPTION TD_PRODUCT_NAME_S " extension: File Open Dialog\0"
+#endif
+
+#define INTERNAL_NAME "FileDlgExt\0"
+#define ORIGINAL_FILE_NAME    "FileDlgExt.dll\0"
+#define PRODUCT_NAME_ADDITION TD_PRODUCT_NAME_ADDITION_S
+#define COPYRIGHT_START_YEAR  TD_COPYRIGHT_START_YEAR_S
+
+#include "../../../../VersionInfo.rc2"

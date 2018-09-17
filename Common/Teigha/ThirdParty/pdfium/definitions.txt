@@ -1,0 +1,14 @@
+#
+# PDFium definitions
+#
+
+#fxcodec definitions
+add_definitions(-DUSE_SYSTEM_ZLIB -DUSE_SYSTEM_LIBJPEG -DOPJ_STATIC -DNO_PDFIUM_LIB_OPEN_OPENJPEG)
+
+if(WINRT)
+  add_definitions(-DSKIP_OS_SECURE_RANDOM -DNO_GET_ENVIRONMENT)
+endif()
+
+
+#avoid custom allocator problems (INT-9636)
+add_definitions(-DMEMORY_TOOL_REPLACES_ALLOCATOR)

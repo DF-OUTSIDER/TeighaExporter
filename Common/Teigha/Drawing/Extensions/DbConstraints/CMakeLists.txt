@@ -1,0 +1,323 @@
+set (db_constraints_source
+  DbAssocEdgePersSubentId.cpp
+  DbConstraints.cpp
+  DbAssoc2dConstraintGroup.cpp
+  DbAssocValueProviderPE.cpp
+  DbAssocDimDependencyBody.cpp
+  DbAssocVariable.cpp
+  OdConstrainedGeometry.cpp
+  DbAssocManager.cpp
+  DbAssocNetwork.cpp
+  DbAssocActionBody.cpp
+  DbAssocAction.cpp
+  DbAssocActionParam.cpp
+  DbAssocArrayActionBody.cpp
+  DbAssocArrayModifyActionBody.cpp
+  DbAssocArrayCommonParameters.cpp
+  DbAssocArrayPathParameters.cpp
+  DbAssocArrayPolarParameters.cpp
+  DbAssocArrayRectangularParameters.cpp
+  DbAssocArrayItem.cpp
+  DbAssocArrayParameters.cpp
+  DbAssocParamBasedActionBody.cpp
+  DbAssocDimDependencyBodyBase.cpp
+  DbAssocMLeaderActionBody.cpp
+  DbAssocRotatedDimActionBody.cpp
+  DbAssocAlignedDimActionBody.cpp
+  DbAssoc3PointAngularDimActionBody.cpp
+  DbAssocOrdinateDimActionBody.cpp
+  DbBlockParameterDependencyBody.cpp  
+  DbAssocGeomDependency.cpp
+  DbAssocDependency.cpp
+  OdExplicitConstr.cpp
+  DbAssocValueDependency.cpp
+  DbAssocDependencyBody.cpp
+  OdImplicitConstr.cpp
+  OdConstraintGroupNode.cpp
+  DbAssocPersSubentId.cpp
+  OdGeomConstraint.cpp
+  OdDbAssocLinePersSubentIdPE.cpp
+  OdDbAssocCurvePersSubentIdPE.cpp
+  OdDbAssocDependencyPE.cpp
+  OdDbAssocEllArcPersSubentIdPE.cpp
+  OdDbAssocXLinePersSubentIdPE.cpp
+  OdDbAssocPointPersSubentIdPE.cpp
+  OdDbAssocRayPersSubentIdPE.cpp
+  OdDbAssocPersSubentIdPE.cpp
+  OdDbAssocCirclePersSubentIdPE.cpp
+  OdDbAssocArcPersSubentIdPE.cpp
+  OdDbAssocSplinePersSubentIdPE.cpp
+  OdDbAssocPolylinePersSubentIdPE.cpp
+  OdDbAssocBlockReferncePersSubentIdPE.cpp
+  DbAssocNetworkDeepCloneAux.cpp
+  DbAssocNetworkDeepCloneReactor.cpp
+  DbAssocNetworkLongTransactionReactor.cpp
+  DbSmartCenterActionBody.cpp
+  DbSmartCenterActionBodyBase.cpp
+  DbSmartCenterObjectsParameters.cpp
+  OdDbAssocViewPortPersSubentIdPE.cpp
+  DbCenterLineActionBody.cpp
+  DbCenterMarkActionBody.cpp
+  DbAssocSurfaceActionBody.cpp
+  DbAssocLoftedSurfaceActionBody.cpp
+  DbAssocBlendSurfaceActionBody.cpp
+  DbAssocEdgeChamferActionBody.cpp
+  DbAssocEdgeFilletActionBody.cpp
+  DbAssocExtendSurfaceActionBody.cpp
+  DbAssocExtrudedSurfaceActionBody.cpp
+  DbAssocNetworkSurfaceActionBody.cpp
+  DbAssocPatchSurfaceActionBody.cpp
+  DbAssocPlaneSurfaceActionBody.cpp
+  DbAssocRevolvedSurfaceActionBody.cpp
+  DbAssocSweptSurfaceActionBody.cpp
+  DbAssocTrimSurfaceActionBody.cpp
+  DbAssocRestoreEntityStateActionBody.cpp
+  DbAssocSurfacesParameters.cpp
+  DbAssocFilletSurfaceActionBody.cpp
+  DbAssocOffsetSurfaceActionBody.cpp
+  OdDbAssoc3dSolidPersSubentIdPE.cpp
+  OdDbAssocSurfacePersSubentIdPE.cpp
+)
+SOURCE_GROUP ("Source Files" FILES ${db_constraints_source})
+
+set (db_constraints_source_impl
+  OdCompositeConstraintImpl.cpp
+  OdAngleConstraintImpl.cpp
+  DbImpAssocVariable.cpp
+  OdHelpParameterImpl.cpp
+  OdConstrainedEllipseImpl.cpp
+  OdConstrainedBoundedEllipseImpl.cpp
+  AssocActionPE.cpp
+  OdGeomConstraintImpl.cpp
+  OdParallelConstraintImpl.cpp
+  OdConstrainedPointImpl.cpp
+  OdConstrainedLineImpl.cpp
+  OdConstrainedRigidSetImpl.cpp
+  OdConstrainedGeometryImpl.cpp
+  OdConstrainedCircleImpl.cpp
+  OdRadiusDiameterConstraintImpl.cpp
+  OdExplicitConstraintImpl.cpp
+  OdConstrainedSplineImpl.cpp
+  OdConstrainedCurveImpl.cpp
+  OdConstrainedBoundedLineImpl.cpp
+  DbImpAssoc2dConstraintGroup.cpp
+  DbImpAssocNetwork.cpp
+  Od3PointAngleConstraintImpl.cpp
+  OdConstrainedArcImpl.cpp
+  OdConstraintGroupNodeImpl.cpp
+  OdConstrainedImplicitPointImpl.cpp
+  DbImpAssocAction.cpp
+  DbImpAssocActionParam.cpp
+  DbImpAssocArrayParameters.cpp
+  DbImpAssocActionBody.cpp
+  OdConstrainedConstructionLineImpl.cpp
+  OdDistanceConstraintImpl.cpp
+  DbImpAssocDependency.cpp
+  DbImpAssocGeomDependency.cpp
+  DbImpAssocValueDependency.cpp
+  DbImpCenterMarkActionBody.cpp
+  DbImpCenterLineActionBody.cpp
+  DbImpSmartCenterActionBody.cpp
+  DbImpSmartCenterObjectsParameters.cpp	
+  DbImpAssocMLeaderActionBody.cpp
+  DbImpAssocRotatedDimActionBody.cpp
+  DbImpAssocAlignedDimActionBody.cpp
+  DbImpAssoc3PointAngularDimActionBody.cpp
+  DbImpAssocOrdinateDimActionBody.cpp
+  DbImpAssocExtrudedSurfaceActionBody.cpp
+  DbImpAssocRestoreEntityStateActionBody.cpp
+	DbImpAssocSurfacesParameters.cpp
+	DbImpAssocBlendSurfaceActionBody.cpp
+	DbImpAssocFilletSurfaceActionBody.cpp
+	DbImpAssocSweptSurfaceActionBody.cpp
+	DbImpAssocRevolvedSurfaceActionBody.cpp
+	DbImpAssocOffsetSurfaceActionBody.cpp
+	DbImpAssocExtendSurfaceActionBody.cpp
+	DbImpAssocPatchSurfaceActionBody.cpp
+	DbImpAssocPathBasedSurfaceActionBody.cpp
+	DbImpAssocLoftedSurfaceActionBody.cpp
+	DbImpAssocNetworkSurfaceActionBody.cpp
+	DbImpAssocPlaneSurfaceActionBody.cpp
+	DbImpAssocTrimSurfaceActionBody.cpp
+)
+SOURCE_GROUP ("Source Files\\impl" FILES ${db_constraints_source_impl})
+
+set (db_constraints_source_core_data
+  DbEvalVariant.cpp
+  DbGeomRef.cpp
+  OdExpression.cpp
+)
+SOURCE_GROUP ("Source Files\\core_data" FILES ${db_constraints_source_core_data})
+
+set (db_constraints_include
+  DbAssocEdgePersSubentId.h
+  DbAssocManager.h
+  DbAssocNetwork.h
+  DbAssocPersSubentId.h
+  DbAssocValueProviderPE.h
+  OdGeomConstraint.h
+  DbAssocDependencyBody.h
+  OdImplicitConstr.h
+  DbAssocValueDependency.h
+  DbAssoc2dConstraintGroup.h
+  DbAssocGeomDependency.h
+  DbConstraintsExports.h
+  OdConstraintGroupNode.h
+  DbAssocVariable.h
+  OdExplicitConstr.h
+  DbAssocDimDependencyBodyBase.h
+  DbBlockParameterDependencyBody.h
+  DbAssocActionBody.h
+  DbAssocGlobal.h
+  DbAssocAction.h
+  DbAssocActionParam.h
+  DbAssocArrayActionBody.h
+  DbAssocArrayModifyActionBody.h
+  DbAssocArrayCommonParameters.h
+  DbAssocArrayPathParameters.h
+  DbAssocArrayPolarParameters.h
+  DbAssocArrayRectangularParameters.h
+  DbAssocArrayItem.h
+  DbAssocArrayParameters.h
+  DbAssocParamBasedActionBody.h
+  OdConstrainedGeometry.h
+  DbAssocDimDependencyBody.h
+  DbAssocDependency.h
+  DbAssocMLeaderActionBody.h
+  DbAssocRotatedDimActionBody.h
+  DbAssocAlignedDimActionBody.h
+  DbAssoc3PointAngularDimActionBody.h
+  DbAssocOrdinateDimActionBody.h
+  OdDbAssocLinePersSubentIdPE.h
+  OdDbAssocPointPersSubentIdPE.h
+  OdDbAssocEllArcPersSubentIdPE.h
+  OdDbAssocCurvePersSubentIdPE.h
+  OdDbAssocRayPersSubentIdPE.h
+  OdDbAssocXLinePersSubentIdPE.h
+  OdDbAssocDependencyPE.h
+  OdDbAssocPersSubentIdPE.h
+  OdDbAssocCirclePersSubentIdPE.h
+  OdDbAssocSplinePersSubentIdPE.h
+  OdDbAssocArcPersSubentIdPE.h
+  DbAssocSurfaceActionBody.h
+  DbAssocLoftedSurfaceActionBody.h
+  DbAssocBlendSurfaceActionBody.h
+  DbAssocEdgeChamferActionBody.h
+  DbAssocEdgeFilletActionBody.h
+  DbAssocExtendSurfaceActionBody.h
+  DbAssocExtrudedSurfaceActionBody.h
+  DbAssocNetworkSurfaceActionBody.h
+  DbAssocPatchSurfaceActionBody.h
+  DbAssocPlaneSurfaceActionBody.h
+  DbAssocRevolvedSurfaceActionBody.h
+  DbAssocSweptSurfaceActionBody.h
+  DbAssocTrimSurfaceActionBody.h
+  DbSmartCenterActionBody.h
+  DbSmartCenterActionBodyBase.h
+  DbSmartCenterObjectsParameters.h
+  OdDbAssocBlockReferncePersSubentIdPE.h
+  OdDbAssocViewPortPersSubentIdPE.h
+  DbCenterLineActionBody.h
+  DbCenterMarkActionBody.h
+  DbAssocRestoreEntityStateActionBody.h
+  DbAssocSurfacesParameters.h
+  DbAssocFilletSurfaceActionBody.h
+  DbAssocOffsetSurfaceActionBody.h
+  OdDbAssoc3dSolidPersSubentIdPE.h
+  OdDbAssocSurfacePersSubentIdPE.h
+)
+SOURCE_GROUP ("Header Files" FILES ${db_constraints_include})
+
+set (db_constraints_include_impl
+  OdHelpParameterImpl.h
+  OdConstrainedBoundedEllipseImpl.h
+  OdAngleConstraintImpl.h
+  OdCompositeConstraintImpl.h
+  OdConstrainedArcImpl.h
+  OdConstrainedLineImpl.h
+  OdConstrainedEllipseImpl.h
+  OdConstrainedCurveImpl.h
+  AssocActionPE.h
+  DbImpAssocNetwork.h
+  OdConstrainedImplicitPointImpl.h
+  DbImpAssocVariable.h
+  OdConstrainedBoundedLineImpl.h
+  OdConstrainedSplineImpl.h
+  OdConstrainedCircleImpl.h
+  OdGeomConstraintImpl.h
+  OdConstraintGroupNodeImpl.h
+  DbImpAssocAction.h
+  DbImpAssocActionParam.h
+  DbImpAssocArrayParameters.h
+  DbImpAssocActionBody.h
+  OdConstrainedGeometryImpl.h
+  OdRadiusDiameterConstraintImpl.h
+  OdDistanceConstraintImpl.h
+  DbImpAssoc2dConstraintGroup.h
+  OdParallelConstraintImpl.h
+  Od3PointAngleConstraintImpl.h
+  OdConstrainedPointImpl.h
+  OdExplicitConstraintImpl.h
+  OdConstrainedConstructionLineImpl.h
+  OdConstrainedRigidSetImpl.h
+  DbImpAssocValueDependency.h
+  DbImpAssocGeomDependency.h
+  DbImpAssocDependency.h
+  DbImpAssocValueDependency.h
+  DbImpCenterMarkActionBody.h
+  DbImpCenterLineActionBody.h
+  DbImpSmartCenterActionBody.h	
+  DbImpSmartCenterObjectsParameters.h
+  DbImpAssocMLeaderActionBody.h
+  DbImpAssocRotatedDimActionBody.h
+  DbImpAssocAlignedDimActionBody.h
+  DbImpAssoc3PointAngularDimActionBody.h
+  DbImpAssocOrdinateDimActionBody.h
+  DbImpAssocExtrudedSurfaceActionBody.h
+  DbImpAssocRestoreEntityStateActionBody.h
+	DbImpAssocSurfacesParameters.h
+	DbImpAssocBlendSurfaceActionBody.h
+	DbImpAssocFilletSurfaceActionBody.h
+	DbImpAssocSweptSurfaceActionBody.h
+	DbImpAssocRevolvedSurfaceActionBody.h
+	DbImpAssocOffsetSurfaceActionBody.h
+	DbImpAssocExtendSurfaceActionBody.h
+	DbImpAssocPatchSurfaceActionBody.h
+	DbImpAssocPathBasedSurfaceActionBody.h
+	DbImpAssocLoftedSurfaceActionBody.h
+	DbImpAssocNetworkSurfaceActionBody.h
+	DbImpAssocPlaneSurfaceActionBody.h
+	DbImpAssocTrimSurfaceActionBody.h
+)
+SOURCE_GROUP ("Header Files\\impl" FILES ${db_constraints_include_impl})
+
+set (db_constraints_include_core_data
+  DbEvalVariant.h
+  DbGeomRef.h
+)
+SOURCE_GROUP ("Header Files\\core_data" FILES ${db_constraints_include_core_data})
+
+tdrawing_sources(${TD_DB_CONSTRAINTS_LIB}
+  ${db_constraints_source}
+  ${db_constraints_source_impl}
+  ${db_constraints_source_core_data}
+  ${db_constraints_include}
+  ${db_constraints_include_impl}
+  ${db_constraints_include_core_data}
+	)
+
+include_directories(
+${TKERNEL_ROOT}/Include
+)
+
+if(ODA_SHARED AND MSVC)	
+tdrawing_sources(${TD_DB_CONSTRAINTS_LIB}
+				  DbConstraints.rc
+				  )
+endif(ODA_SHARED AND MSVC)	
+
+add_definitions(-DTD_DBCONSTRAINTS_DLL_EXPORTS)
+
+tdrawing_tx(${TD_DB_CONSTRAINTS_LIB} ${TD_DB_LIB} ${TD_DBROOT_LIB} ${TD_GE_LIB} ${TD_ROOT_LIB} ${TD_ALLOC_LIB} ${TD_HISTORY_LIB})
+
+tdrawing_project_group(${TD_DB_CONSTRAINTS_LIB} "Extensions")

@@ -1,0 +1,595 @@
+#
+# This make file is designed primarily to build the entire target,
+# csmap.lib in this case, from scratch in an "installation" environment.
+# The secondary objective of the design is to minimize the maintenance
+# requirements of achieving the primary objective.  Thus, coding of a
+# comprehensive map of interdependencies between files is deliberately
+# avoided.
+#
+# Thus, one should _NOT_ expect this make file to compile only the
+# specific modules you might have changed in a development/debug
+# environment.  Such may happen, and you may be thankful; but do _NOT_
+# rely on this.  Fortunately, build times on current Linux systems are
+# so small I suspect you will probably never consider the build to
+# be overly inefficient.
+#
+# Do not expect the results of using this makefile to be 100%
+# compatible with the use of Visual Studio. This was not an objective
+# of the design and nothing was done that is known to be contrary to
+# compatibility.  However, compatibility has not been tested; nor
+# is it likely to be an issue; choose the development environment
+# the works best for you.
+#
+# Specifically, there is no current dependency for include files.
+# Thus, for example, after editing cs_map.h you will probably need
+# to do a 'clean' operation in order to get a valid build.
+#
+PRJ_NAME = Library
+TRG_BASE = CsMap
+TRG_EXT = .LIB
+TRG_NAME = $(TRG_BASE)$(TRG_EXT)
+#
+# Using the /E option on the NMAKE command line will instruct
+# NMAKE to use any existing environmental variable for of these
+# three variables.  These setting enable this makefile to be used
+# op its own.  Especially useful when debugging this makefile.
+#
+# Ooops!!! Microsoft lies again.  The /E option does not alter
+# the precedence of macro definitions in favor of environmental
+# variables upon which the original design of this relied upon.
+# Thus, we have a bunch of pre-processor ugliness in order to
+# get this to work.
+#
+# The author currently uses Visual Studio 2008 (i.e. version 9)
+# to maintain the library.  Thus, VERSION is set to 90.
+#
+VERSION = 90
+CONFIGURATION = Release
+PROCESSOR = x64
+#
+# The following definitions are instituted to facilitate building multiple
+# versions of the Library. The variables referenced by these definitions
+# are expected to be passed, in the environment, from a parent makefile.
+# You'll need to use the NMAKE /E command line switch to make this work.
+#
+OUT_DIR = $(SRC_DIR)\..\lib$(VERSION)\$(CONFIGURATION)
+INT_DIR = $(SRC_DIR)\..\obj$(VERSION)\$(PRJ_NAME)\$(CONFIGURATION)
+#
+# This makefile is expected to reside in the CsMapDev\Source directory
+# and this directory is expected to be the current working directory
+# of the NMAKE process which is building the Library.
+#
+SRC_DIR = $(MAKEDIR)
+SRC_INC_DIR = $(MAKEDIR)\..\Include
+#
+# Again, if the /E command line switch is used, the values for these
+# variables can be set in a parent makefile.  These settings are rather
+# generic; thus generally useful for makefile testing and debugging.
+#
+CC_FLG = /nologo /I..\Include /MD /O2 /W3 /EHsc /DWIN32 /DNDEBUG /D_WINDOWS
+CPP_FLG = /nologo /I..\Include /MD /O2 /W3 /EHsc /DWIN32 /DNDEBUG /D_WINDOWS /D__CPP__
+#
+# Deal with the various processors this make file may be used to generate
+# object modules for.  If $(PROCESSOR) is set to anything other than "x64",
+# it is considered to be the equivalent of "x86",, i.e. 32 bit build.
+#
+# I'm unaware of any command line switch for a 64 bit processor in the
+# Microsoft Visual Studio compilers (cl).  If there is one,, add it here
+# to the CC_FLG and CPP_FLG variables.
+#
+!IF ("$(PROCESSOR)" == "x64")
+OUT_DIR = $(OUT_DIR)64
+INT_DIR = $(INT_DIR)64
+!ENDIF
+#
+# The definitions of the  following six macros are _NOT_ used in the remainder
+# of this makefile.  They were generated in the early stages of development of
+# this makefile, and turned out not to be useful in the NMAKE environment.
+# Other developers, maybe you, may be able to use these macros in an manner
+# which escaped the author to remove some of the ugliness which appears below.
+# COntemplating this possibility, we leave these definitions in the makefile.
+#
+CSMAP_SRC_CC =  CS_alber.c \
+				CS_angle.c \
+				CS_ansi.c \
+				CS_ats77.c \
+				CS_azmea.c \
+				CS_azmed.c \
+				CS_badekas.c \
+				CS_bonne.c \
+				CS_bpcnc.c \
+				CS_bursa.c \
+				CS_bynFile.c \
+				CS_category.c \
+				CS_csini.c \
+				CS_csio.c \
+				CS_csprm.c \
+				CS_csWktLoc.c \
+				CS_ctio.c \
+				CS_datum.c \
+				CS_defaults.c \
+				CS_defCmp.c \
+				CS_defCmpEx.c \
+				CS_dtcalc.c \
+				CS_dtio.c \
+				CS_dtmBridge.c \
+				CS_edcnc.c \
+				CS_edcyl.c \
+				CS_egm96.c \
+				CS_ekrt4.c \
+				CS_ekrt6.c \
+				CS_elCalc.c \
+				CS_elio.c \
+				CS_erpt.c \
+				CS_error.c \
+				CS_fips.c \
+				CS_frame.c \
+				CS_frnch.c \
+				CS_gauss.c \
+				CS_general.c \
+				CS_geocn.c \
+				CS_geoct.c \
+				CS_geoid96.c \
+				CS_geoid99.c \
+				CS_geoidHeight.c \
+				CS_gissupprt.c \
+				CS_gnomc.c \
+				CS_gpio.c \
+				CS_gridi.c \
+				CS_groups.c \
+				CS_guiApi.c \
+				CS_gxIndex.c \
+				CS_gxio.c \
+				CS_gxprm.c \
+				CS_hlApi.c \
+				CS_hmlsn.c \
+				CS_hpApi.c \
+				CS_japan.c \
+				CS_krovk.c \
+				CS_lmbrt.c \
+				CS_lmtan.c \
+				CS_mgrs.c \
+				CS_millr.c \
+				CS_modpc.c \
+				CS_molod.c \
+				CS_molwd.c \
+				CS_mrcat.c \
+				CS_mstro.c \
+				CS_mulrg.c \
+				CS_nacyl.c \
+				CS_nadcn.c \
+				CS_nerth.c \
+				CS_ntv1.c \
+				CS_ntv2.c \
+				CS_nullx.c \
+				CS_nzlnd.c \
+				CS_oblqm.c \
+				CS_optional.c \
+				CS_ortho.c \
+				CS_osgm91.c \
+				CS_ost02.c \
+				CS_ost97.c \
+				CS_ostn02.c \
+				CS_ostn97.c \
+				CS_ostro.c \
+				CS_parm3.c \
+				CS_parm4.c \
+				CS_parm6.c \
+				CS_parm7.c \
+				CS_plycn.c \
+				CS_pstro.c \
+				CS_rlsUpdt.c \
+				CS_robin.c \
+				CS_sinus.c \
+				CS_sstro.c \
+				CS_supprt.c \
+				CS_swiss.c \
+				CS_sys34.c \
+				CS_system.c \
+				CS_tacyl.c \
+				CS_trmer.c \
+				CS_trmrs.c \
+				CS_units.c \
+				CS_unity.c \
+				CS_vdgrn.c \
+				CS_vertconUS.c \
+				CS_vrtcon.c \
+				CS_wgs72.c \
+				CS_winkelTripel.c \
+				CS_zones.c \
+				CScscomp.c \
+				CSdata.c \
+				CSdataDT.c \
+				CSdataPJ.c \
+				CSdataU.c \
+				CSdatumCatalog.c \
+				CSdictDiff.c \
+				CSdtcomp.c \
+				CSelcomp.c \
+				CSgeodeticSupport.c \
+				CSgpcomp.c \
+				CSgxcomp.c \
+				CSwktFlavors.c
+
+CSMAP_SRC_CPP = CS_csvFileSupport.cpp \
+				CS_epsgStuff.cpp \
+				CS_epsgSupport.cpp \
+				CS_nameMapper.cpp \
+				CS_nameMapperSupport.cpp \
+				CS_wellknowntext.cpp \
+				CS_wktObject.cpp \
+				CS_wktObjKonstants.cpp \
+				CScs2Wkt.cpp \
+				CSdt2Wkt.cpp \
+				CSel2Wkt.cpp
+
+CSMAP_SOURCE = $(CSMAP_SRC_CC) $(CSMAP_SRC_CPP)
+
+CSMAP_CC_OBJ = $(CSMAP_SRC_CC:.c=.obj)
+CSMAP_CPP_OBJ = $(CSMAP_SRC_CPP:.cpp=.obj)
+CSMAP_OBJECTS = $(CSMAP_CC_OBJ) $(CSMAP_CPP_OBJ)
+
+#
+# This is the first real target in the file, and therefore, what
+# gets built if there are no targets on the command line.
+#
+Library : $(OUT_DIR) $(INT_DIR) $(INT_DIR)/CS_stdhdrC.obj $(INT_DIR)/CS_stdhdrCpp.obj $(OUT_DIR)\$(TRG_NAME)
+#
+# The following is pretty ugly, but best the author can do to achieve the
+# objectives this make facility within the confines of Microsoft's NMAKE.
+# Adding a new module to the build requires adding a line to the list of
+# dependencies in the following list, and also an additional entry the the
+# (again) very ugly macro definition which appears below; easily identified
+# by its equivalent ugliness.  Nevertheless, the gains in productivity when
+# doing maintenance builds is impressive, so we hold our nose and deal with
+# it.  [If you can do better within the confines of NMAKE; go for it.]
+#
+# The basic problem here is to establish a dependency relationship between object
+# module and 'C' source which spans directory boundaries; directories being
+# established via macro's which are subject to tweaking in a parent makefile.
+#
+# 'C' object module dependencies.
+#
+$(INT_DIR)\CSgeodeticSupport.obj : $(SRC_DIR)\CSgeodeticSupport.c
+$(INT_DIR)\CS_alber.obj          : $(SRC_DIR)\CS_alber.c
+$(INT_DIR)\CS_angle.obj          : $(SRC_DIR)\CS_angle.c
+$(INT_DIR)\CS_ansi.obj           : $(SRC_DIR)\CS_ansi.c
+$(INT_DIR)\CS_ats77.obj          : $(SRC_DIR)\CS_ats77.c
+$(INT_DIR)\CS_azmea.obj          : $(SRC_DIR)\CS_azmea.c
+$(INT_DIR)\CS_azmed.obj          : $(SRC_DIR)\CS_azmed.c
+$(INT_DIR)\CS_badekas.obj        : $(SRC_DIR)\CS_badekas.c
+$(INT_DIR)\CS_bonne.obj          : $(SRC_DIR)\CS_bonne.c
+$(INT_DIR)\CS_bpcnc.obj          : $(SRC_DIR)\CS_bpcnc.c
+$(INT_DIR)\CS_bursa.obj          : $(SRC_DIR)\CS_bursa.c
+$(INT_DIR)\CS_bynFile.obj        : $(SRC_DIR)\CS_bynFile.c
+$(INT_DIR)\CS_category.obj       : $(SRC_DIR)\CS_category.c
+$(INT_DIR)\CS_csini.obj          : $(SRC_DIR)\CS_csini.c
+$(INT_DIR)\CS_csio.obj           : $(SRC_DIR)\CS_csio.c
+$(INT_DIR)\CS_csprm.obj          : $(SRC_DIR)\CS_csprm.c
+$(INT_DIR)\CS_csWktLoc.obj       : $(SRC_DIR)\CS_csWktLoc.c
+$(INT_DIR)\CS_ctio.obj           : $(SRC_DIR)\CS_ctio.c
+$(INT_DIR)\CS_datum.obj          : $(SRC_DIR)\CS_datum.c
+$(INT_DIR)\CS_defaults.obj       : $(SRC_DIR)\CS_defaults.c
+$(INT_DIR)\CS_defCmp.obj         : $(SRC_DIR)\CS_defCmp.c
+$(INT_DIR)\CS_defCmpEx.obj       : $(SRC_DIR)\CS_defCmpEx.c
+$(INT_DIR)\CS_dtcalc.obj         : $(SRC_DIR)\CS_dtcalc.c
+$(INT_DIR)\CS_dtio.obj           : $(SRC_DIR)\CS_dtio.c
+$(INT_DIR)\CS_dtmBridge.obj      : $(SRC_DIR)\CS_dtmBridge.c
+$(INT_DIR)\CS_edcnc.obj          : $(SRC_DIR)\CS_edcnc.c
+$(INT_DIR)\CS_edcyl.obj          : $(SRC_DIR)\CS_edcyl.c
+$(INT_DIR)\CS_egm96.obj          : $(SRC_DIR)\CS_egm96.c
+$(INT_DIR)\CS_ekrt4.obj          : $(SRC_DIR)\CS_ekrt4.c
+$(INT_DIR)\CS_ekrt6.obj          : $(SRC_DIR)\CS_ekrt6.c
+$(INT_DIR)\CS_elCalc.obj         : $(SRC_DIR)\CS_elCalc.c
+$(INT_DIR)\CS_elio.obj           : $(SRC_DIR)\CS_elio.c
+$(INT_DIR)\CS_erpt.obj           : $(SRC_DIR)\CS_erpt.c
+$(INT_DIR)\CS_error.obj          : $(SRC_DIR)\CS_error.c
+$(INT_DIR)\CS_fips.obj           : $(SRC_DIR)\CS_fips.c
+$(INT_DIR)\CS_frame.obj          : $(SRC_DIR)\CS_frame.c
+$(INT_DIR)\CS_frnch.obj          : $(SRC_DIR)\CS_frnch.c
+$(INT_DIR)\CS_gauss.obj          : $(SRC_DIR)\CS_gauss.c
+$(INT_DIR)\CS_general.obj        : $(SRC_DIR)\CS_general.c
+$(INT_DIR)\CS_geocn.obj          : $(SRC_DIR)\CS_geocn.c
+$(INT_DIR)\CS_geoct.obj          : $(SRC_DIR)\CS_geoct.c
+$(INT_DIR)\CS_geoid96.obj        : $(SRC_DIR)\CS_geoid96.c
+$(INT_DIR)\CS_geoid99.obj        : $(SRC_DIR)\CS_geoid99.c
+$(INT_DIR)\CS_geoidHeight.obj    : $(SRC_DIR)\CS_geoidHeight.c
+$(INT_DIR)\CS_gissupprt.obj      : $(SRC_DIR)\CS_gissupprt.c
+$(INT_DIR)\CS_gnomc.obj          : $(SRC_DIR)\CS_gnomc.c
+$(INT_DIR)\CS_gpio.obj           : $(SRC_DIR)\CS_gpio.c
+$(INT_DIR)\CS_gridi.obj          : $(SRC_DIR)\CS_gridi.c
+$(INT_DIR)\CS_groups.obj         : $(SRC_DIR)\CS_groups.c
+$(INT_DIR)\CS_guiApi.obj         : $(SRC_DIR)\CS_guiApi.c
+$(INT_DIR)\CS_gxIndex.obj        : $(SRC_DIR)\CS_gxIndex.c
+$(INT_DIR)\CS_gxio.obj           : $(SRC_DIR)\CS_gxio.c
+$(INT_DIR)\CS_gxprm.obj          : $(SRC_DIR)\CS_gxprm.c
+$(INT_DIR)\CS_hlApi.obj          : $(SRC_DIR)\CS_hlApi.c
+$(INT_DIR)\CS_hmlsn.obj          : $(SRC_DIR)\CS_hmlsn.c
+$(INT_DIR)\CS_hpApi.obj          : $(SRC_DIR)\CS_hpApi.c
+$(INT_DIR)\CS_japan.obj          : $(SRC_DIR)\CS_japan.c
+$(INT_DIR)\CS_krovk.obj          : $(SRC_DIR)\CS_krovk.c
+$(INT_DIR)\CS_lmbrt.obj          : $(SRC_DIR)\CS_lmbrt.c
+$(INT_DIR)\CS_lmtan.obj          : $(SRC_DIR)\CS_lmtan.c
+$(INT_DIR)\CS_mgrs.obj           : $(SRC_DIR)\CS_mgrs.c
+$(INT_DIR)\CS_millr.obj          : $(SRC_DIR)\CS_millr.c
+$(INT_DIR)\CS_modpc.obj          : $(SRC_DIR)\CS_modpc.c
+$(INT_DIR)\CS_molod.obj          : $(SRC_DIR)\CS_molod.c
+$(INT_DIR)\CS_molwd.obj          : $(SRC_DIR)\CS_molwd.c
+$(INT_DIR)\CS_mrcat.obj          : $(SRC_DIR)\CS_mrcat.c
+$(INT_DIR)\CS_mstro.obj          : $(SRC_DIR)\CS_mstro.c
+$(INT_DIR)\CS_mulrg.obj          : $(SRC_DIR)\CS_mulrg.c
+$(INT_DIR)\CS_nacyl.obj          : $(SRC_DIR)\CS_nacyl.c
+$(INT_DIR)\CS_nadcn.obj          : $(SRC_DIR)\CS_nadcn.c
+$(INT_DIR)\CS_nerth.obj          : $(SRC_DIR)\CS_nerth.c
+$(INT_DIR)\CS_ntv1.obj           : $(SRC_DIR)\CS_ntv1.c
+$(INT_DIR)\CS_ntv2.obj           : $(SRC_DIR)\CS_ntv2.c
+$(INT_DIR)\CS_nullx.obj          : $(SRC_DIR)\CS_nullx.c
+$(INT_DIR)\CS_nzlnd.obj          : $(SRC_DIR)\CS_nzlnd.c
+$(INT_DIR)\CS_oblqm.obj          : $(SRC_DIR)\CS_oblqm.c
+$(INT_DIR)\CS_optional.obj       : $(SRC_DIR)\CS_optional.c
+$(INT_DIR)\CS_ortho.obj          : $(SRC_DIR)\CS_ortho.c
+$(INT_DIR)\CS_osgm91.obj         : $(SRC_DIR)\CS_osgm91.c
+$(INT_DIR)\CS_ost02.obj          : $(SRC_DIR)\CS_ost02.c
+$(INT_DIR)\CS_ost97.obj          : $(SRC_DIR)\CS_ost97.c
+$(INT_DIR)\CS_ostn02.obj         : $(SRC_DIR)\CS_ostn02.c
+$(INT_DIR)\CS_ostn97.obj         : $(SRC_DIR)\CS_ostn97.c
+$(INT_DIR)\CS_ostro.obj          : $(SRC_DIR)\CS_ostro.c
+$(INT_DIR)\CS_parm3.obj          : $(SRC_DIR)\CS_parm3.c
+$(INT_DIR)\CS_parm4.obj          : $(SRC_DIR)\CS_parm4.c
+$(INT_DIR)\CS_parm6.obj          : $(SRC_DIR)\CS_parm6.c
+$(INT_DIR)\CS_parm7.obj          : $(SRC_DIR)\CS_parm7.c
+$(INT_DIR)\CS_plycn.obj          : $(SRC_DIR)\CS_plycn.c
+$(INT_DIR)\CS_pstro.obj          : $(SRC_DIR)\CS_pstro.c
+$(INT_DIR)\CS_rlsUpdt.obj        : $(SRC_DIR)\CS_rlsUpdt.c
+$(INT_DIR)\CS_robin.obj          : $(SRC_DIR)\CS_robin.c
+$(INT_DIR)\CS_sinus.obj          : $(SRC_DIR)\CS_sinus.c
+$(INT_DIR)\CS_sstro.obj          : $(SRC_DIR)\CS_sstro.c
+$(INT_DIR)\CS_supprt.obj         : $(SRC_DIR)\CS_supprt.c
+$(INT_DIR)\CS_swiss.obj          : $(SRC_DIR)\CS_swiss.c
+$(INT_DIR)\CS_sys34.obj          : $(SRC_DIR)\CS_sys34.c
+$(INT_DIR)\CS_system.obj         : $(SRC_DIR)\CS_system.c
+$(INT_DIR)\CS_tacyl.obj          : $(SRC_DIR)\CS_tacyl.c
+$(INT_DIR)\CS_trmer.obj          : $(SRC_DIR)\CS_trmer.c
+$(INT_DIR)\CS_trmrs.obj          : $(SRC_DIR)\CS_trmrs.c
+$(INT_DIR)\CS_units.obj          : $(SRC_DIR)\CS_units.c
+$(INT_DIR)\CS_unity.obj          : $(SRC_DIR)\CS_unity.c
+$(INT_DIR)\CS_vdgrn.obj          : $(SRC_DIR)\CS_vdgrn.c
+$(INT_DIR)\CS_vertconUS.obj      : $(SRC_DIR)\CS_vertconUS.c
+$(INT_DIR)\CS_vrtcon.obj         : $(SRC_DIR)\CS_vrtcon.c
+$(INT_DIR)\CS_wgs72.obj          : $(SRC_DIR)\CS_wgs72.c
+$(INT_DIR)\CS_winkelTripel.obj   : $(SRC_DIR)\CS_winkelTripel.c
+$(INT_DIR)\CS_zones.obj          : $(SRC_DIR)\CS_zones.c
+$(INT_DIR)\CScscomp.obj          : $(SRC_DIR)\CScscomp.c
+$(INT_DIR)\CSdata.obj            : $(SRC_DIR)\CSdata.c
+$(INT_DIR)\CSdataDT.obj          : $(SRC_DIR)\CSdataDT.c
+$(INT_DIR)\CSdataPJ.obj          : $(SRC_DIR)\CSdataPJ.c
+$(INT_DIR)\CSdataU.obj           : $(SRC_DIR)\CSdataU.c
+$(INT_DIR)\CSdatumCatalog.obj    : $(SRC_DIR)\CSdatumCatalog.c
+$(INT_DIR)\CSdictDiff.obj        : $(SRC_DIR)\CSdictDiff.c
+$(INT_DIR)\CSdtcomp.obj          : $(SRC_DIR)\CSdtcomp.c
+$(INT_DIR)\CSelcomp.obj          : $(SRC_DIR)\CSelcomp.c
+$(INT_DIR)\CSgeodeticSupport.obj : $(SRC_DIR)\CSgeodeticSupport.c
+$(INT_DIR)\CSgpcomp.obj          : $(SRC_DIR)\CSgpcomp.c
+$(INT_DIR)\CSgxcomp.obj          : $(SRC_DIR)\CSgxcomp.c
+$(INT_DIR)\CSwktFlavors.obj      : $(SRC_DIR)\CSwktFlavors.c
+#
+# 'C++' object module dependencies.
+#
+$(INT_DIR)\CS_csvFileSupport.obj    : $(SRC_DIR)\CS_csvFileSupport.cpp
+$(INT_DIR)\CS_epsgStuff.obj         : $(SRC_DIR)\CS_epsgStuff.cpp
+$(INT_DIR)\CS_epsgSupport.obj       : $(SRC_DIR)\CS_epsgSupport.cpp
+$(INT_DIR)\CS_nameMapper.obj        : $(SRC_DIR)\CS_nameMapper.cpp
+$(INT_DIR)\CS_nameMapperSupport.obj : $(SRC_DIR)\CS_nameMapperSupport.cpp
+$(INT_DIR)\CS_wellknowntext.obj     : $(SRC_DIR)\CS_wellknowntext.cpp
+$(INT_DIR)\CS_wktObject.obj         : $(SRC_DIR)\CS_wktObject.cpp
+$(INT_DIR)\CS_wktObjKonstants.obj   : $(SRC_DIR)\CS_wktObjKonstants.cpp
+$(INT_DIR)\CScs2Wkt.obj             : $(SRC_DIR)\CScs2Wkt.cpp
+$(INT_DIR)\CSdt2Wkt.obj             : $(SRC_DIR)\CSdt2Wkt.cpp
+$(INT_DIR)\CSel2Wkt.obj             : $(SRC_DIR)\CSel2Wkt.cpp
+#
+# Note the use of the -Fo option to put the object into the "intermediate"
+# directory which is different for different versions, configurations, and
+# processors.  Thus, several different versions can be made without an
+# "implied" clean in between.  Yet retain a clean "Source" directory for
+# maintenance and backup purposes.
+#
+# Given the above defined dependencies, and the ugly lib.obj dependencies
+# given below, the following inference rules work wonderfully.  Note that
+# achieving proper pre-compiled header operation requires that the modules
+# which are used to create the pre-compiled header must be compiled separately.
+#
+{$(SRC_DIR)}.c{$(INT_DIR)}.obj::
+	cl /c $(CC_FLG) /Fp$(INT_DIR)\cs_map.pch /Yucs_map.h /Fo$(INT_DIR)\ $<
+
+{$(SRC_DIR)}.cpp{$(INT_DIR)}.obj::
+	cl /c $(CPP_FLG) /Fp$(INT_DIR)\cs_mapCpp.pch /Yucs_wkt.h /Fo$(INT_DIR)\ $<
+#
+# Again, a large amount of "ugly".  The following instructs NMAKE to add
+# the appropriate object modules to the "need to make target" list. It
+# also enables the LIB command to garner the objects from the
+# intermediary directory without having to mess around with changing
+# the working directory.
+#
+$(OUT_DIR)/$(TRG_NAME) : $(INT_DIR)/CS_stdhdrC.obj \
+						 $(INT_DIR)/CS_stdhdrCpp.obj \
+						 $(INT_DIR)/csIoUtil.obj \
+						 $(INT_DIR)\CS_alber.obj \
+						 $(INT_DIR)\CS_angle.obj \
+						 $(INT_DIR)\CS_ansi.obj \
+						 $(INT_DIR)\CS_ats77.obj \
+						 $(INT_DIR)\CS_azmea.obj \
+						 $(INT_DIR)\CS_azmed.obj \
+						 $(INT_DIR)\CS_badekas.obj \
+						 $(INT_DIR)\CS_bonne.obj \
+						 $(INT_DIR)\CS_bpcnc.obj \
+						 $(INT_DIR)\CS_bursa.obj \
+						 $(INT_DIR)\CS_bynFile.obj \
+						 $(INT_DIR)\CS_category.obj \
+						 $(INT_DIR)\CS_csini.obj \
+						 $(INT_DIR)\CS_csio.obj \
+						 $(INT_DIR)\CS_csprm.obj \
+						 $(INT_DIR)\CS_csWktLoc.obj \
+						 $(INT_DIR)\CS_ctio.obj \
+						 $(INT_DIR)\CS_datum.obj \
+						 $(INT_DIR)\CS_defaults.obj \
+						 $(INT_DIR)\CS_defCmp.obj \
+						 $(INT_DIR)\CS_defCmpEx.obj \
+						 $(INT_DIR)\CS_dtcalc.obj \
+						 $(INT_DIR)\CS_dtio.obj \
+						 $(INT_DIR)\CS_dtmBridge.obj \
+						 $(INT_DIR)\CS_edcnc.obj \
+						 $(INT_DIR)\CS_edcyl.obj \
+						 $(INT_DIR)\CS_egm96.obj \
+						 $(INT_DIR)\CS_ekrt4.obj \
+						 $(INT_DIR)\CS_ekrt6.obj \
+						 $(INT_DIR)\CS_elCalc.obj \
+						 $(INT_DIR)\CS_elio.obj \
+						 $(INT_DIR)\CS_erpt.obj \
+						 $(INT_DIR)\CS_error.obj \
+						 $(INT_DIR)\CS_fips.obj \
+						 $(INT_DIR)\CS_frame.obj \
+						 $(INT_DIR)\CS_frnch.obj \
+						 $(INT_DIR)\CS_gauss.obj \
+						 $(INT_DIR)\CS_general.obj \
+						 $(INT_DIR)\CS_geocn.obj \
+						 $(INT_DIR)\CS_geoct.obj \
+						 $(INT_DIR)\CS_geoid96.obj \
+						 $(INT_DIR)\CS_geoid99.obj \
+						 $(INT_DIR)\CS_geoidHeight.obj \
+						 $(INT_DIR)\CS_gissupprt.obj \
+						 $(INT_DIR)\CS_gnomc.obj \
+						 $(INT_DIR)\CS_gpio.obj \
+						 $(INT_DIR)\CS_gridi.obj \
+						 $(INT_DIR)\CS_groups.obj \
+						 $(INT_DIR)\CS_guiApi.obj \
+						 $(INT_DIR)\CS_gxIndex.obj \
+						 $(INT_DIR)\CS_gxio.obj \
+						 $(INT_DIR)\CS_gxprm.obj \
+						 $(INT_DIR)\CS_hlApi.obj \
+						 $(INT_DIR)\CS_hmlsn.obj \
+						 $(INT_DIR)\CS_hpApi.obj \
+						 $(INT_DIR)\CS_japan.obj \
+						 $(INT_DIR)\CS_krovk.obj \
+						 $(INT_DIR)\CS_lmbrt.obj \
+						 $(INT_DIR)\CS_lmtan.obj \
+						 $(INT_DIR)\CS_mgrs.obj \
+						 $(INT_DIR)\CS_millr.obj \
+						 $(INT_DIR)\CS_modpc.obj \
+						 $(INT_DIR)\CS_molod.obj \
+						 $(INT_DIR)\CS_molwd.obj \
+						 $(INT_DIR)\CS_mrcat.obj \
+						 $(INT_DIR)\CS_mstro.obj \
+						 $(INT_DIR)\CS_mulrg.obj \
+						 $(INT_DIR)\CS_nacyl.obj \
+						 $(INT_DIR)\CS_nadcn.obj \
+						 $(INT_DIR)\CS_nerth.obj \
+						 $(INT_DIR)\CS_ntv1.obj \
+						 $(INT_DIR)\CS_ntv2.obj \
+						 $(INT_DIR)\CS_nullx.obj \
+						 $(INT_DIR)\CS_nzlnd.obj \
+						 $(INT_DIR)\CS_oblqm.obj \
+						 $(INT_DIR)\CS_optional.obj \
+						 $(INT_DIR)\CS_ortho.obj \
+						 $(INT_DIR)\CS_osgm91.obj \
+						 $(INT_DIR)\CS_ost02.obj \
+						 $(INT_DIR)\CS_ost97.obj \
+						 $(INT_DIR)\CS_ostn02.obj \
+						 $(INT_DIR)\CS_ostn97.obj \
+						 $(INT_DIR)\CS_ostro.obj \
+						 $(INT_DIR)\CS_parm3.obj \
+						 $(INT_DIR)\CS_parm4.obj \
+						 $(INT_DIR)\CS_parm6.obj \
+						 $(INT_DIR)\CS_parm7.obj \
+						 $(INT_DIR)\CS_plycn.obj \
+						 $(INT_DIR)\CS_pstro.obj \
+						 $(INT_DIR)\CS_rlsUpdt.obj \
+						 $(INT_DIR)\CS_robin.obj \
+						 $(INT_DIR)\CS_sinus.obj \
+						 $(INT_DIR)\CS_sstro.obj \
+						 $(INT_DIR)\CS_supprt.obj \
+						 $(INT_DIR)\CS_swiss.obj \
+						 $(INT_DIR)\CS_sys34.obj \
+						 $(INT_DIR)\CS_system.obj \
+						 $(INT_DIR)\CS_tacyl.obj \
+						 $(INT_DIR)\CS_trmer.obj \
+						 $(INT_DIR)\CS_trmrs.obj \
+						 $(INT_DIR)\CS_units.obj \
+						 $(INT_DIR)\CS_unity.obj \
+						 $(INT_DIR)\CS_vdgrn.obj \
+						 $(INT_DIR)\CS_vertconUS.obj \
+						 $(INT_DIR)\CS_vrtcon.obj \
+						 $(INT_DIR)\CS_wgs72.obj \
+						 $(INT_DIR)\CS_winkelTripel.obj \
+						 $(INT_DIR)\CS_zones.obj \
+						 $(INT_DIR)\CScscomp.obj \
+						 $(INT_DIR)\CSdata.obj \
+						 $(INT_DIR)\CSdataDT.obj \
+						 $(INT_DIR)\CSdataPJ.obj \
+						 $(INT_DIR)\CSdataU.obj \
+						 $(INT_DIR)\CSdatumCatalog.obj \
+						 $(INT_DIR)\CSdictDiff.obj \
+						 $(INT_DIR)\CSdtcomp.obj \
+						 $(INT_DIR)\CSelcomp.obj \
+						 $(INT_DIR)\CSgeodeticSupport.obj \
+						 $(INT_DIR)\CSgpcomp.obj \
+						 $(INT_DIR)\CSgxcomp.obj \
+						 $(INT_DIR)\CSwktFlavors.obj \
+						 $(INT_DIR)\CS_csvFileSupport.obj \
+						 $(INT_DIR)\CS_epsgStuff.obj \
+						 $(INT_DIR)\CS_epsgSupport.obj \
+						 $(INT_DIR)\CS_nameMapper.obj \
+						 $(INT_DIR)\CS_nameMapperSupport.obj \
+						 $(INT_DIR)\CS_wellknowntext.obj \
+						 $(INT_DIR)\CS_wktObject.obj \
+						 $(INT_DIR)\CS_wktObjKonstants.obj \
+						 $(INT_DIR)\CScs2Wkt.obj \
+						 $(INT_DIR)\CSdt2Wkt.obj \
+						 $(INT_DIR)\CSel2Wkt.obj
+	LIB /out:$(OUT_DIR)/$(TRG_NAME) $?
+#
+# Special rules to get the pre-compiled headers created for use by all
+# other 'C' and 'C++' modules.
+#
+$(INT_DIR)/CS_stdhdrC.obj : $(SRC_DIR)\CS_stdhdrC.c $(SRC_INC_DIR)\cs_map.h
+	cl /c $(CC_FLG) /Fp$(INT_DIR)\cs_map.pch /Yccs_map.h /Fo$(INT_DIR)\ $(SRC_DIR)\CS_stdhdrC.c
+
+$(INT_DIR)\CS_stdhdrCpp.obj : $(SRC_DIR)\CS_stdhdrCpp.cpp \
+							  $(SRC_INC_DIR)\cs_map.h \
+							  $(SRC_INC_DIR)\cs_Legacy.h \
+							  $(SRC_INC_DIR)\cs_WktObject.hpp \
+							  $(SRC_INC_DIR)\cs_wkt.h \
+							  $(SRC_INC_DIR)\cs_NameMapper.hpp
+	cl /c $(CPP_FLG) /Fp$(INT_DIR)\cs_mapCpp.pch /Yccs_wkt.h /Fo$(INT_DIR)\ $(SRC_DIR)\CS_stdhdrCpp.cpp
+#
+# The following module is large and takes a long time to compile. Also, it
+# will not benefit from pre-compiled headers.  Thus, we deal with this module
+# separately.
+#
+$(INT_DIR)/csIoUtil.obj : $(SRC_DIR)\csIoUtil.cpp
+	cl /c $(CPP_FLG) /Y- /Fo$(INT_DIR)\ $**
+#
+# Some dependencies to force the creation of the output and intermediary
+# directories.  These 'mkdir' operations require the "extended" mode of the
+# Windows command shell.  To achieve this, add the "/e:on" option to the
+# command line which starts the command line process.  Once the directories
+# have been created, this is no longer required.
+#
+$(CSMAP_OBJECTS) : $(INT_DIR)
+
+$(INT_DIR) :
+	mkdir $(INT_DIR)
+
+$(OUT_DIR) :
+	mkdir $(OUT_DIR)
+#
+# Finally, two very useful "pseudo-targets".  Required for the related parent
+# makefile features to work properly.  Note, the '/F' option is required to
+# force the deletion of read-only files.
+#
+clean :
+	del /F $(INT_DIR)\*.obj
+	del /F $(INT_DIR)\*.pch
+	del /F $(OUT_DIR)\$(TRG_NAME)
+
+rebuild: clean $(OUT_DIR)\$(TRG_NAME)
+

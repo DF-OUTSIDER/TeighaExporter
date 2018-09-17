@@ -1,0 +1,119 @@
+-i"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include"
+-i..\Include
+
+-wlib(0)							// turn off diagnostics in VC++ include files
+
+-sem(CS_locateGxByDatum2 1p,2p,3p)
+-sem(TcsNameMapper::InitializeFlavors,initializer)			// member function is part of class initialization process
+-sem(TcsNameMapper::AdjustDefaultIDs,initializer)			// member function is part of class initialization process
+
+-e15								// redeclared (typically const to non-const) should be fixed by using Const on all references (painful fix)
+-e18								// redeclared (typically const to non-const) should be fixed by using Const on all references (painful fix)
+-e158								// Assignment increase capability (const assigned to a const)
+-e514								// unusual use of boolean expression
+-e605								// basically, assigning a const pointer value to a non-const pointer !!!!!
+-e686								// PC-Lint warning about use of -wlib(0) above
+-e713								// Loss of precision, (i.e. unsigned long to long)
+-e715								// symbol not referenced
+-e737								// Loss of sign, i.e. (unsigned long to long)
+-e765								// could be made static
+-e801								// use of goto is deprecated
+-e816								// non-ANSI format specification in swprintf statment
+-e818								// parameter could be declared const
+-e834								// suggest use of parenthesis to make precedence obvious
+-e825								// switch case fall through
+-e1551								// function (destructors and iterators) may throw and exception.
+-e1904								// 'C' style comment in C++ code
+-e1924								// 'C' style cast in C++ module
+-e1926								// default constructor implicitly called
+// Suspect that the following are required as PC-Lint gets confused
+// by 'include'ing a .c source file rather than a traditional .h file.
+-esym(526,cs_SwpLst)				// not defined  (PC-Lint bug ?)
+-esym(526,C_ttj)					// not defined  (PC-Lint bug ?)
+-esym(526,C_jtt)					// not defined  (PC-Lint bug ?)
+-esym(526,C_tts)					// not defined  (PC-Lint bug ?)
+-esym(526,C_stt)					// not defined  (PC-Lint bug ?)
+-esym(526,C_ttb)					// not defined  (PC-Lint bug ?)
+-esym(526,C_btt)					// not defined  (PC-Lint bug ?)
+-esym(526,C_ttj98)					// not defined  (PC-Lint bug ?)
+
+-esym(534,CS_stcpy)					// ignoring return value
+-esym(534,CS_stncp)					// ignoring return value
+-esym(534,CS_stncp)					// ignoring return value
+-esym(534,CS_stncat)				// ignoring return value
+-esym(534,CS_trim)					// ignoring return value
+-esym(534,CS_trimWc)				// ignoring return value
+-esym(534,CS_atof)					// ignoring return value
+-esym(534,setvbuf)					// ignoring return value
+-esym(534,CS_adjll)					// ignoring return value
+-esym(534,CS_bswap)					// ignoring return value
+-esym(534,CS_bswap)					// ignoring return value
+-esym(534,CS_llazdd)				// ignoring return value
+-esym(534,CSerpt)					// ignoring return value
+-esym(534,wcscpy)					// ignoring return value
+-esym(534,wcscat)					// ignoring return value
+-esym(534,wcsncpy)					// ignoring return value
+-esym(534,wcsncat)					// ignoring return value
+-esym(534,swprintf)					// ignoring return value
+-esym(534,mbstowcs)					// ignoring return value
+-esym(534,wcstombs)					// ignoring return value
+-esym(534,csCsvQuoter)				// ignoring return value
+-esym(534,TcsEpsgCode::AsString)	// ignoring return value
+-esym(534,CSdfltpro)				// ignoring return value
+-esym(534,cs_GxXform_::destroy)		// ignoring return value
+-esym(534,CSbswap)					// ignoring return value
+-esym(534,CSAddParamValue)			// ignoring return value
+-esym(534,CSAddParamNm)				// ignoring return value
+
+-esym(552,cs_Safe)					// not accessed
+-esym(552,cs_Sortbs)				// not accessed
+-esym(552,cs_Doserr)				// not accessed
+-esym(714,cs_LinkMePleaseC)			// not referenced
+-esym(714,cs_LinkMePleaseCpp)		// not referenced
+-esym(714,cs_Mhalf)					// not referenced
+-esym(714,cs_Micron)				// not referenced
+-esym(714,cs_NPSecs)				// not referenced
+-esym(714,cs_OptchrC)				// not referenced
+-esym(714,cs_OptchrWC)				// not referenced
+-esym(714,csNadconBufrSize)			// not referenced
+-esym(714,CS_calc)					// not referenced
+-esym(714,cs_Safe)					// not referenced
+-esym(714,cs_Sortbs)				// not referenced
+-esym(714,cs_Doserr)				// not referenced
+-esym(714,cs_DirsepWC)				// not referenced
+-esym(714,cs_Three_pi)				// not referenced
+-esym(714,CS_usrDtDefPtr)			// not referenced
+-esym(714,CS_usrElDefPtr)			// not referenced
+-esym(714,cs_EnvEndWC)				// not referenced
+-esym(714,cs_EnvStartWC)			// not referenced
+-esym(714,cs_EnvchrWC)				// not referenced
+-esym(714,cs_ExtsepWC)				// not referenced
+-esym(714,CS_gxkey)					// not referenced
+-esym(714,CS_gxwrtchk)				// not referenced
+-esym(714,cs_Wgs84_1esq)			// not referenced
+-esym(714,cs_Wgs84Ptr)				// not referenced
+-esym(714,KcsNmMapNoNumber)			// not referenced
+-esym(714,csElReduce)				// not referenced
+-esym(714,csAcronyms)				// not referenced
+-esym(714,csCsReduce)				// not referenced
+-esym(714,csDtReduce)				// not referenced
+-esym(714,cs_Wgs84_aa)				// not referenced
+-esym(714,cs_Wgs84_ff)				// not referenced
+-esym(714,cs_Wgs84_esq)				// not referenced
+-esym(714,rcWktAxisValueToName)		// not referenced
+--emacro( (835),cs_DTCFRMT_NONE)	// Zero constant appears on right side of + operator
+-esym(1529,TcsEpsgCode::operator=)	// no check for &rhs == this
+//
+// Additions require by PC-Lint Version 9.00d
+//
+-e843				// could be declared as const
+-e838				// previously assign value unused
+-e438				// previously assigned value unused
+// Don't particularly loke disabling the following, but is necessary as
+// iswspace (and similar fucntions) expect a win_t argument which Microsoft
+// typdefs as unsigned short, yet wchar_t is defined as a signed integral
+// (assumed to be short).
+-e732				// assigning figned to unsigned, losing sign
+-e839				// static function declaration, but not in definition
+-e1784				// Method declared extern "c" but not defined extern "C"
+-e1786				// Implicit conversion to Boolean (e.g. ok  &= (expression)

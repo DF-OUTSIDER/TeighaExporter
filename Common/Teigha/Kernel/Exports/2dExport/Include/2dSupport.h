@@ -1,0 +1,98 @@
+/////////////////////////////////////////////////////////////////////////////// 
+// Copyright (C) 2002-2018, Open Design Alliance (the "Alliance"). 
+// All rights reserved. 
+// 
+// This software and its documentation and related materials are owned by 
+// the Alliance. The software may only be incorporated into application 
+// programs owned by members of the Alliance, subject to a signed 
+// Membership Agreement and Supplemental Software License Agreement with the
+// Alliance. The structure and organization of this software are the valuable  
+// trade secrets of the Alliance and its suppliers. The software is also 
+// protected by copyright law and international treaty provisions. Application  
+// programs incorporating this software must include the following statement 
+// with their copyright notices:
+//   
+//   This application incorporates Teigha(R) software pursuant to a license 
+//   agreement with Open Design Alliance.
+//   Teigha(R) Copyright (C) 2002-2018 by Open Design Alliance. 
+//   All rights reserved.
+//
+// By use of this software, its documentation or related materials, you 
+// acknowledge and accept the above terms.
+///////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// 2Support.h : for keeping some Auxiliary methods.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+#ifndef _2DSUPPORT_DEFINED
+#define _2DSUPPORT_DEFINED
+
+#include "OdaCommon.h"
+#include "Gs/Gs.h"
+
+#include "Ge/GeLineSeg2d.h"
+#include "Ge/GePoint3d.h"
+
+
+
+///////////////////////////////////////////////////////////
+//
+// Auxiliary methods
+//
+
+/** \details
+  <group OdExport_Classes> 
+*/
+namespace TD_2D_EXPORT {
+
+#define RoundDblToUInt32(X)         (OdUInt32(X+.5))
+
+char* getUnitNameString(OdUInt32 idUnit);
+
+void calculateExtents( OdGePoint3d& minExtent, 
+                       OdGePoint3d& maxExtent, 
+                       OdGePoint3dArray& array/*, 
+                       const OdGeMatrix3d& matrix*/
+                     );
+
+///////////////////////////////////////////////////////////
+//
+// Geometry methods
+//
+
+bool isSegmentOutOfRect(
+                const OdGeLineSeg2d& lineSeg, 
+                const OdGePoint2d& ptMin, 
+                const OdGePoint2d& ptMax);
+
+bool isPtInRect(const OdGePoint2d& pt, 
+                const OdGePoint2d& ptMin, 
+                const OdGePoint2d& ptMax);
+
+    
+bool IsPolygonRectIntersection2d(
+                OdUInt32 nPoints, 
+                const OdGePoint2d* pPoints, 
+                const OdGePoint2d& ptMin, 
+                const OdGePoint2d& ptMax);
+
+bool PolygonOutOfRect2d(
+                OdUInt32 nPoints, 
+                const OdGePoint2d* pPoints, 
+                const OdGePoint2d& ptMin, 
+                const OdGePoint2d& ptMax);
+
+static inline OdGePoint2d toGePoint2d(const OdGsDCPoint& srcPt)
+{
+  OdGePoint2d res;
+  res.x = srcPt.x;
+  res.y = srcPt.y;
+  return res;
+}
+}
+
+#endif /* _2DSUPPORT_DEFINED */
